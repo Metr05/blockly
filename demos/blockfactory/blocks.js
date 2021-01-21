@@ -15,23 +15,23 @@ Blockly.Blocks['factory_base'] = {
   init: function() {
     this.setColour(120);
     this.appendDummyInput()
-        .appendField('name')
+        .appendField('名称')
         .appendField(new Blockly.FieldTextInput('block_type'), 'NAME');
     this.appendStatementInput('INPUTS')
         .setCheck('Input')
-        .appendField('inputs');
+        .appendField('输入');
     var dropdown = new Blockly.FieldDropdown([
-        ['automatic inputs', 'AUTO'],
-        ['external inputs', 'EXT'],
-        ['inline inputs', 'INT']]);
+        ['自适应', 'AUTO'],
+        ['外部输入', 'EXT'],
+        ['行内输入', 'INT']]);
     this.appendDummyInput()
         .appendField(dropdown, 'INLINE');
     dropdown = new Blockly.FieldDropdown([
-        ['no connections', 'NONE'],
-        ['← left output', 'LEFT'],
-        ['↕ top+bottom connections', 'BOTH'],
-        ['↑ top connection', 'TOP'],
-        ['↓ bottom connection', 'BOTTOM']],
+        ['无连接', 'NONE'],
+        ['← 左输出', 'LEFT'],
+        ['↕ 上下连接', 'BOTH'],
+        ['↑ 上连接', 'TOP'],
+        ['↓ 下连接', 'BOTTOM']],
         function(option) {
           this.getSourceBlock().updateShape_(option);
           // Connect a shadow block to this new input.
@@ -41,13 +41,13 @@ Blockly.Blocks['factory_base'] = {
         .appendField(dropdown, 'CONNECTIONS');
     this.appendValueInput('TOOLTIP')
         .setCheck('String')
-        .appendField('tooltip');
+        .appendField('提示');
     this.appendValueInput('HELPURL')
         .setCheck('String')
-        .appendField('help url');
+        .appendField('帮助链接');
     this.appendValueInput('COLOUR')
         .setCheck('Colour')
-        .appendField('colour');
+        .appendField('颜色');
     this.setTooltip('Build a custom block by plugging\n' +
         'fields, inputs and other blocks here.');
     this.setHelpUrl(
@@ -139,7 +139,7 @@ var FIELD_ARGS = [
   }
 ];
 
-var TYPE_MESSAGE = 'type %1';
+var TYPE_MESSAGE = '类型 %1';
 var TYPE_ARGS = [
   {
     "type": "input_value",
@@ -153,7 +153,7 @@ Blockly.Blocks['input_value'] = {
   // Value input.
   init: function() {
     this.jsonInit({
-      "message0": "value input %1 %2",
+      "message0": "参数传入 %1 %2",
       "args0": [
         {
           "type": "field_input",
@@ -184,7 +184,7 @@ Blockly.Blocks['input_statement'] = {
   // Statement input.
   init: function() {
     this.jsonInit({
-      "message0": "statement input %1 %2",
+      "message0": "状态传入 %1 %2",
       "args0": [
         {
           "type": "field_input",
@@ -215,7 +215,7 @@ Blockly.Blocks['input_dummy'] = {
   // Dummy input.
   init: function() {
     this.jsonInit({
-      "message0": "dummy input",
+      "message0": "无槽输入",
       "message1": FIELD_MESSAGE,
       "args1": FIELD_ARGS,
       "previousStatement": "Input",
@@ -234,7 +234,7 @@ Blockly.Blocks['field_static'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput('FIRST')
-        .appendField('text')
+        .appendField('文本')
         .appendField(new Blockly.FieldTextInput(''), 'TEXT');
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
@@ -248,7 +248,7 @@ Blockly.Blocks['field_label_serializable'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput('FIRST')
-        .appendField('text')
+        .appendField('文本')
         .appendField(new Blockly.FieldTextInput(''), 'TEXT')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -268,7 +268,7 @@ Blockly.Blocks['field_input'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('text input')
+        .appendField('文本输入')
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -287,16 +287,16 @@ Blockly.Blocks['field_number'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('numeric input')
+        .appendField('数字范围')
         .appendField(new Blockly.FieldNumber(0), 'VALUE')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
     this.appendDummyInput()
-        .appendField('min')
+        .appendField('下界')
         .appendField(new Blockly.FieldNumber(-Infinity), 'MIN')
-        .appendField('max')
+        .appendField('上界')
         .appendField(new Blockly.FieldNumber(Infinity), 'MAX')
-        .appendField('precision')
+        .appendField('精确度')
         .appendField(new Blockly.FieldNumber(0, 0), 'PRECISION');
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
@@ -313,7 +313,7 @@ Blockly.Blocks['field_angle'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('angle input')
+        .appendField('角度输入')
         .appendField(new Blockly.FieldAngle('90'), 'ANGLE')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -331,7 +331,7 @@ Blockly.Blocks['field_dropdown'] = {
   // Dropdown menu.
   init: function() {
     this.appendDummyInput()
-        .appendField('dropdown')
+        .appendField('选择器')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
     this.optionList_ = ['text', 'text', 'text'];
     this.updateShape_();
@@ -486,7 +486,7 @@ Blockly.Blocks['field_dropdown_container'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('add options');
+        .appendField('增加选项');
     this.appendStatementInput('STACK');
     this.setTooltip('Add, remove, or reorder options\n' +
                     'to reconfigure this dropdown menu.');
@@ -500,7 +500,7 @@ Blockly.Blocks['field_dropdown_option_text'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('text option');
+        .appendField('文字选项');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Add a new text option to the dropdown menu.');
@@ -514,7 +514,7 @@ Blockly.Blocks['field_dropdown_option_image'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('image option');
+        .appendField('图像选项');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Add a new image option to the dropdown menu.');
@@ -528,7 +528,7 @@ Blockly.Blocks['field_checkbox'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('checkbox')
+        .appendField('复选框')
         .appendField(new Blockly.FieldCheckbox('TRUE'), 'CHECKED')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -547,7 +547,7 @@ Blockly.Blocks['field_colour'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('colour')
+        .appendField('颜色')
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -566,7 +566,7 @@ Blockly.Blocks['field_variable'] = {
   init: function() {
     this.setColour(160);
     this.appendDummyInput()
-        .appendField('variable')
+        .appendField('变量')
         .appendField(new Blockly.FieldTextInput('item'), 'TEXT')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -586,16 +586,16 @@ Blockly.Blocks['field_image'] = {
     this.setColour(160);
     var src = 'https://www.gstatic.com/codesite/ph/images/star_on.gif';
     this.appendDummyInput()
-        .appendField('image')
+        .appendField('图像')
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('width')
+        .appendField('宽度')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'WIDTH')
-        .appendField('height')
+        .appendField('高度')
         .appendField(new Blockly.FieldNumber('15', 0, NaN, 1), 'HEIGHT')
-        .appendField('alt text')
+        .appendField('替代文本')
         .appendField(new Blockly.FieldTextInput('*'), 'ALT')
-        .appendField('flip RTL')
+        .appendField('右至左')
         .appendField(new Blockly.FieldCheckbox('false'), 'FLIP_RTL');
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
@@ -710,7 +710,7 @@ Blockly.Blocks['type_group_container'] = {
   // Container.
   init: function() {
     this.jsonInit({
-      "message0": "add types %1 %2",
+      "message0": "增加类型 %1 %2",
       "args0": [
         {"type": "input_dummy"},
         {"type": "input_statement", "name": "STACK"}
@@ -726,7 +726,7 @@ Blockly.Blocks['type_group_item'] = {
   // Add type.
   init: function() {
     this.jsonInit({
-      "message0": "type",
+      "message0": "类型",
       "previousStatement": null,
       "nextStatement": null,
       "colour": 230,
@@ -741,7 +741,7 @@ Blockly.Blocks['type_null'] = {
   valueType: null,
   init: function() {
     this.jsonInit({
-      "message0": "any",
+      "message0": "任意类型",
       "output": "Type",
       "colour": 230,
       "tooltip": "Any type is allowed.",
@@ -755,7 +755,7 @@ Blockly.Blocks['type_boolean'] = {
   valueType: 'Boolean',
   init: function() {
     this.jsonInit({
-      "message0": "Boolean",
+      "message0": "布尔类型",
       "output": "Type",
       "colour": 230,
       "tooltip": "Booleans (true/false) are allowed.",
@@ -769,7 +769,7 @@ Blockly.Blocks['type_number'] = {
   valueType: 'Number',
   init: function() {
     this.jsonInit({
-      "message0": "Number",
+      "message0": "数字类型",
       "output": "Type",
       "colour": 230,
       "tooltip": "Numbers (int/float) are allowed.",
@@ -783,7 +783,7 @@ Blockly.Blocks['type_string'] = {
   valueType: 'String',
   init: function() {
     this.jsonInit({
-      "message0": "String",
+      "message0": "字符串类型",
       "output": "Type",
       "colour": 230,
       "tooltip": "Strings (text) are allowed.",
@@ -797,7 +797,7 @@ Blockly.Blocks['type_list'] = {
   valueType: 'Array',
   init: function() {
     this.jsonInit({
-      "message0": "Array",
+      "message0": "数组类型",
       "output": "Type",
       "colour": 230,
       "tooltip": "Arrays (lists) are allowed.",
@@ -810,7 +810,7 @@ Blockly.Blocks['type_other'] = {
   // Other type.
   init: function() {
     this.jsonInit({
-      "message0": "other %1",
+      "message0": "其它 %1",
       "args0": [{"type": "field_input", "name": "TYPE", "text": ""}],
       "output": "Type",
       "colour": 230,
@@ -824,7 +824,7 @@ Blockly.Blocks['colour_hue'] = {
   // Set the colour of the block.
   init: function() {
     this.appendDummyInput()
-        .appendField('hue:')
+        .appendField('色轮:')
         .appendField(new Blockly.FieldAngle('0', this.validator), 'HUE');
     this.setOutput(true, 'Colour');
     this.setTooltip('Paint the block with this colour.');

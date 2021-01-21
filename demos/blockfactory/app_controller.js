@@ -26,7 +26,6 @@ AppController = function() {
   // Construct Workspace Factory Controller.
   this.workspaceFactoryController = new WorkspaceFactoryController
       ('workspacefactory_toolbox', 'toolbox_blocks', 'preview_blocks');
-
   // Initialize Block Exporter
   this.exporter =
       new BlockExporterController(this.blockLibraryController.storage);
@@ -264,7 +263,7 @@ AppController.prototype.onTab = function() {
     var hasUnsavedChanges =
         !FactoryUtils.savedBlockChanges(this.blockLibraryController);
     if (hasUnsavedChanges) {
-      var msg = 'You have unsaved changes in Block Factory.';
+      var msg = '你有一些在Block构建的操作没有保存.';
       var continueAnyway = confirm(msg);
       BlocklyDevTools.Analytics.onWarning(msg);
       if (!continueAnyway) {
